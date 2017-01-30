@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<meta charset="utf-8">
+  	<title>byTagName</title>
+  </head>
+    <body>
+      <h1>Heading with a <span>span</span> element.</h1>
+      <p>A paragraph with <span>one</span>, <span>two</span>
+        spans.</p>
+      <p>Array</p>
+     
+      <button onclick="byTagName(document.body, 'span')">Search Span</button>
+       <p id="demo"></p>
+      <script>
+        function byTagName(node, tagName){
+            var arr = [];
+            tagName = tagName.toUpperCase();
+
+            function search(node){
+              for(var i = 0; i < node.childNodes.length; i++){
+                  var child = node.childNodes[i];
+                  if (child.nodeType == document.ELEMENT_NODE){
+                    if (child.nodeName == tagName)
+                      arr.push(child.tagName);
+                  search(child);
+                  }
+                }  
+            }
+            search(node); 
+            document.getElementById("demo").innerHTML = arr;
+            }
+
+      </script>
+    </body>
+</html>

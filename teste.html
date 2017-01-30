@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<meta charset="utf-8">
+  	<title>Styles Conference</title>
+  	<link rel="stylesheet" href="assets/stylesheets/main.css">
+  </head>
+    <body>
+
+      <style>
+        /* Defines a cleaner look for tables */
+        table  { border-collapse: collapse; }
+        td, th { border: 1px solid black; padding: 3px 8px; }
+        th     { text-align: left; }
+      </style>
+
+      <script>
+        var MOUNTAINS = [
+      {name: "Kilimanjaro", height: 5895, country: "Tanzania"},
+      {name: "Everest", height: 8848, country: "Nepal"},
+      {name: "Mount Fuji", height: 3776, country: "Japan"},
+      {name: "Mont Blanc", height: 4808, country: "Italy/France"},
+      {name: "Vaalserberg", height: 323, country: "Netherlands"},
+      {name: "Denali", height: 6168, country: "United States"},
+      {name: "Popocatepetl", height: 5465, country: "Mexico"}
+      ];  
+
+      function buildTable(data) {
+        //create a table
+        var table = document.createElement("table");
+        var arr= [];
+        var prop = data[0];
+        // get the array's property name
+        for (var propertyName in prop) {
+          if(prop.hasOwnProperty(propertyName)){
+            arr.push(propertyName);
+            }
+        }
+        //create a tr
+        var tr = document.createElement("tr");
+        //append the tr to the table
+        table.appendChild(tr);
+        
+        for (var i = 0; i < arr.length; i++){
+          var head = document.createElement("th");
+          var textHead = document.createTextNode(arr[i]);
+          head.appendChild(textHead);
+          tr.appendChild(head);
+        }
+
+      document.body.appendChild(buildTable(MOUNTAINS));
+      </script>
+
+    </body>
+</html>

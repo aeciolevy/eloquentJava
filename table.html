@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<meta charset="utf-8">
+  	<title>Creating tables</title>
+  	<link rel="stylesheet" href="assets/stylesheets/main.css">
+  </head>
+    <body onload="buildTable(MOUNTAINS)">
+      <style>
+        /* Defines a cleaner look for tables */
+        table  { border-collapse: collapse; }
+        td, th { border: 1px solid black; padding: 3px 8px; }
+        th     { text-align: left; }
+      </style>
+      
+      <script>      
+      var MOUNTAINS = [
+      {name: "Kilimanjaro", height: 5895, country: "Tanzania"},
+      {name: "Everest", height: 8848, country: "Nepal"},
+      {name: "Mount Fuji", height: 3776, country: "Japan"},
+      {name: "Mont Blanc", height: 4808, country: "Italy/France"},
+      {name: "Vaalserberg", height: 323, country: "Netherlands"},
+      {name: "Denali", height: 6168, country: "United States"},
+      {name: "Popocatepetl", height: 5465, country: "Mexico"}
+      ];  
+
+      function buildTable(data) {
+        
+        //create a table
+        var parent = document.createElement("table");
+        var arr = [];
+        var prop = data[0];
+        // get the array's property name
+        for (var propertyName in prop) {
+          if(prop.hasOwnProperty(propertyName)){
+            arr.push(propertyName);
+            }
+        }
+        //create header
+          var head = document.createElement("tr");
+
+          for (var l = 0; l < arr.length ; l++) {
+            var cell = document.createElement("th");
+            var cellText = document.createTextNode(arr[l]);
+            cell.appendChild(cellText);
+            head.appendChild(cell);
+            parent.appendChild(head); 
+          }
+
+        //create row
+        for (var j = 0; j< MOUNTAINS.length; j++){
+          var childOne = document.createElement("tr");
+
+          for (var i = 0; i < arr.length; i++){
+            var childChild = document.createElement("td");
+            if (i === 0)
+              var childChildText = document.createTextNode(data[j].name);
+            if (i === 1)
+              var childChildText = document.createTextNode(data[j].height);
+            if (i === 2)
+              var childChildText = document.createTextNode(data[j].country);
+            childChild.appendChild(childChildText);
+            childOne.appendChild(childChild);
+          }
+          parent.appendChild(childOne);
+        }
+        document.body.appendChild(parent);
+      }
+      </script>
+
+    </body>
+</html>
